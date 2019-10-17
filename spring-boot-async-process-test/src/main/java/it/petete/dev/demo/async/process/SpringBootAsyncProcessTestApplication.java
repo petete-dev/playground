@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = { "it.petete.dev.demo" })
 public class SpringBootAsyncProcessTestApplication {
-
+    
     public static void main(final String[] args) {
 	 SpringApplication.run(SpringBootAsyncProcessTestApplication.class, args);
     }
-
+    
 }

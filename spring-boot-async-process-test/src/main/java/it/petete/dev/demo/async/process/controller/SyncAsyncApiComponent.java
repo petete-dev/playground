@@ -21,32 +21,38 @@ public class SyncAsyncApiComponent implements SyncAsyncApi {
     @Override
     @Timed(value = "http.rest.request.get.entity.by.code.async", longTask = true)
     public ResponseEntity<?> getEntityByCodeAsync(final String code, @RequestHeader(value = "X-CORRELATION-ID", required = false) final String X_CORRELATION_ID) {
-	 Metrics.counter("http.rest.request.get.entity.by.code.async.count").increment(1);
+	 Metrics
+	     .counter("http.rest.request.get.entity.by.code.async.count")
+	     .increment(1);
 	 final long startTime = System.currentTimeMillis();
+	 ResponseEntity<?> ret = null;
 	 this.businessLogicService.asyncMethodWithVoidReturnType(code);
 	 final long endTime = System.currentTimeMillis();
 	 final long totalTime = endTime - startTime;
-
+	 
 	 final EntityDto entityDto = new EntityDto();
+	 ret = new ResponseEntity<>(entityDto, HttpStatus.OK);
 	 entityDto.setBody("Execution time : " + totalTime);
-	 final ResponseEntity<?> ret = new ResponseEntity<>(entityDto, HttpStatus.OK);
-
+	 
 	 return ret;
     }
     
     @Override
     @Timed(value = "http.rest.request.get.entity.by.code.sync", longTask = true)
     public ResponseEntity<?> getEntityByCodeSync(final String code, @RequestHeader(value = "X-CORRELATION-ID", required = false) final String X_CORRELATION_ID) {
-	 Metrics.counter("http.rest.request.get.entity.by.code.sync.count").increment(1);
+	 Metrics
+	     .counter("http.rest.request.get.entity.by.code.sync.count")
+	     .increment(1);
 	 
 	 final long startTime = System.currentTimeMillis();
+	 ResponseEntity<?> ret = null;
 	 this.businessLogicService.syncMethodWithVoidReturnType(code);
 	 final long endTime = System.currentTimeMillis();
 	 final long totalTime = endTime - startTime;
-
+	 
 	 final EntityDto entityDto = new EntityDto();
+	 ret = new ResponseEntity<>(entityDto, HttpStatus.OK);
 	 entityDto.setBody("Execution time : " + totalTime);
-	 final ResponseEntity<?> ret = new ResponseEntity<>(entityDto, HttpStatus.OK);
 	 
 	 return ret;
     }
