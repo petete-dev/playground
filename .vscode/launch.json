@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SpringBootReactorTestApplication<spring-boot-reactor-test>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "it.petete.springbootreactortest.SpringBootReactorTestApplication",
+            "projectName": "spring-boot-reactor-test",
+            "args": ""
+        }
+    ]
+}
